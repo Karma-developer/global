@@ -1,0 +1,195 @@
+
+  const [openDate, setOpenDate] = useState(false);
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const handleChange = event => {
+    setPartenza(event.target.value);
+
+    console.log('numero adulti:', event.target.value);
+  };
+  const handleChangea = event => {
+    setArrivo(event.target.value);
+
+    console.log('numero bambini:', event.target.value);
+  };
+  const handleChangeb = event => {
+    setDataInizio(event.target.value);
+
+    console.log('numero bambini:', event.target.value);
+  };
+  const handleChangec = event => {
+    setDataFine(event.target.value);
+
+    console.log('numero bambini:', event.target.value);
+  };
+  const handleChanged = event => {
+    setAdulti(event.target.value);
+
+    console.log('numero bambini:', event.target.value);
+  };
+  const handleChangee = event => {
+    setBambini(event.target.value);
+
+    console.log('numero bambini:', event.target.value);
+  };
+  const [partenza, setPartenza] = useState('');
+  const [arrivo, setArrivo] = useState('');
+  const [dataInizio, setDataInizio] = useState('');
+  const [dataFine, setDataFine] = useState('');
+  const [adulti, setAdulti] = useState('');
+  const [bambini, setBambini] = useState('');
+  const {
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => alert(JSON.stringify(data));
+  const locationRef = useRef("");
+
+  const maxGroupSizeRef = useRef(0);
+  const navigate = useNavigate();
+  
+  const current = new Date();
+ 
+
+
+
+
+<Col lg="12">
+      <div className="search__bar">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Form className="d-flex align-items-center gap-4">
+          <FormGroup className="d-flex gap-3 form__group form__group-fast">
+            <span>
+              <i class="ri-map-pin-line"></i>
+            </span>
+            <div>
+              <h6>Partenza</h6>
+              <input
+                type="text"
+                placeholder="Ricarca tratta"
+                onChange={handleChange}
+              value={partenza}
+              />
+            </div>
+          </FormGroup>
+          <FormGroup className="d-flex gap-3 form__group form__group-fast">
+            <span>
+              <i class="ri-map-pin-line"></i>
+            </span>
+            <div>
+              <h6>Destinazione</h6>
+              <input
+                type="text"
+                placeholder="Ricarca tratta"
+                value={arrivo}
+                onChange={handleChangea}
+             
+              />
+            </div>
+          </FormGroup>
+          <div className="flex space-x-2">
+                  {/* departure section */}
+                  <div>
+                    <div>
+                      <div className="relative">
+                        <h6 className="font-bold text-xl uppercase">
+                          Data partenza
+                        </h6>
+                        <input
+                          type="date"
+                          min={new Date().toISOString().split('T')[0]}
+                       
+                          value={dataInizio}
+                          onChange={handleChangeb}
+                          className={`w-full h-16 text-2xl rounded-lg ${errors.departureDate &&
+                            " focus:border-red-500 focus:ring-red-500 border-red-500"}`}
+                          
+                        />
+                      </div>
+                      <div>
+                      {errors.departureDate && (
+                        <span className="text-sm text-red-500">
+                          {errors.departureDate.message}
+                        </span>
+                      )}
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div className="flex space-x-2">
+
+                  {/* return section */}
+                  <div>
+                    <div>
+                      <div className="relative">
+                        <h6 className="font-bold text-xl uppercase">
+                          Ritorno
+                        </h6>
+                        <input
+                          type="date"
+                          min={new Date().toISOString().split('T')[0]}
+                          className={`w-full h-16 text-2xl rounded-lg ${errors.returnDate &&
+                            " focus:border-red-500 focus:ring-red-500 border-red-500"}`}
+                         value={dataFine}
+                         onChange={handleChangec}
+                        />
+                      </div>
+                      <div>
+                      {errors.returnDate && (
+                        <span className="text-sm text-red-500">
+                          {errors.returnDate.message}
+                        </span>
+                      )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          <Col>
+          <FormGroup className="d-flex gap-3 form__group form__group-last">
+            <span>
+              <i class="ri-group-line"></i>
+            </span>
+            <div>
+              <h6>N. Adulti</h6>
+              <input
+        type="number"
+        id="message"
+        name="message"
+        onChange={handleChanged}
+        value={adulti}
+        min={0}
+      />
+            </div>
+          </FormGroup>
+          <FormGroup className="d-flex gap-3 form__group form__group-last">
+            <span>
+              <i class="ri-group-line"></i>
+            </span>
+            <div>
+              <h6>N. Bambini</h6>
+              <input
+        type="number"
+        id="message"
+        name="message"
+        onChange={handleChangee}
+        value={bambini}
+        min={0}
+      />
+            </div>
+          </FormGroup>
+          </Col>
+
+          <span className="search__icon" type="submit" onClick={()=> {}}>
+            <i class="ri-search-line"></i>
+          </span>
+        </Form>
+        </form>
+      </div>
+    </Col>
